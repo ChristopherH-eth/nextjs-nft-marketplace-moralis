@@ -104,7 +104,7 @@ async function main() {
         chainId: moralisChainId,
         address: contractAddress,
         sync_historical: true,
-        topic: "itemCancelled(address,address,uint256)",
+        topic: "ItemCancelled(address,address,uint256)",
         abi: {
             anonymous: false,
             inputs: [
