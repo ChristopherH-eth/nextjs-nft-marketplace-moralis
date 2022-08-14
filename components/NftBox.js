@@ -3,7 +3,7 @@ import { useWeb3Contract, useMoralis } from "react-moralis"
 import nftMarketplaceAbi from "../constants/NftMarketplace.json"
 import nftAbi from "../constants/BasicNft.json"
 import Image from "next/image"
-import { Card } from "@web3uikit/core"
+import { Card, useNotification } from "@web3uikit/core"
 import { ethers } from "ethers"
 import UpdateListingModal from "./UpdateListingModal"
 
@@ -38,6 +38,7 @@ export default function NftBox({ price, nftAddress, tokenId, marketplaceAddress,
     const [tokenDescription, setTokenDescription] = useState("")
     const [showModal, setShowModal] = useState(false)
     const hideModal = () => setShowModal(false)
+    const dispatch = useNotification()
 
     const isOwnedByUser = seller === account || seller === undefined
     const formattedSellerAddress = isOwnedByUser ? "you" : truncateStr(seller || "", 15)
@@ -53,6 +54,24 @@ export default function NftBox({ price, nftAddress, tokenId, marketplaceAddress,
         contractAddress: nftAddress,
         functionName: "tokenURI",
         params: {
+            tokenId: tokenId,
+        },
+    })
+
+    /**
+     * @notice This useWeb3Contract() function calls the tokenURI() function from the NFT Marketplace smart
+     * contract.
+     * @param nftAddress The address of the NFT.
+     * @param tokenId The unique Token ID.
+     */
+
+    const { runContractFunction: buyItem } = useWeb3Contract({
+        abi: nftMarketplaceAbi,
+        contractAddress: marketplaceAddress,
+        functionName: "buyItem",
+        msgValue: price,
+        params: {
+            nftAddress: nftAddress,
             tokenId: tokenId,
         },
     })
@@ -77,8 +96,32 @@ export default function NftBox({ price, nftAddress, tokenId, marketplaceAddress,
         }
     }
 
+    /**
+     * @notice The handleCardClick() function executes when a user clicks on an NFT card, allowing them to
+     * edit the listing if they own the NFT, or buy it if they don't.
+     */
+
     const handleCardClick = () => {
-        isOwnedByUser ? setShowModal(true) : console.log("Let's buy!")
+        isOwnedByUser
+            ? setShowModal(true)
+            : buyItem({
+                  onError: (error) => console.log(error),
+                  onSuccess: handleBuyItemSuccess,
+              })
+    }
+
+    /**
+     * @notice The handleBuyItemSuccess() function displays a notification when a user successfully purchases an
+     * NFT.
+     */
+
+    const handleBuyItemSuccess = () => {
+        dispatch({
+            type: "success",
+            message: "Item bought!",
+            title: "Item Bought",
+            position: "topR",
+        })
     }
 
     // Reloads the current page when the UI is updated

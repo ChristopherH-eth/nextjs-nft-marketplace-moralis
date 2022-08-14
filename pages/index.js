@@ -16,6 +16,7 @@ export default function Home() {
     )
     console.log(listedNfts)
 
+    // Page Content
     return (
         <div className="container mx-auto">
             <h1 className="py-4 px-4 font-bold text-2xl">Recently Listed</h1>
