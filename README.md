@@ -1,4 +1,4 @@
-# Decentralized NFT Marketplace (Front End)
+# Decentralized NFT Marketplace (Front End - Using Moralis)
 
 The Decentralized NFT Marketplace allows users to buy and sell NFTs. This front end of the Dapp
 interacts with the "hardhat-nft-marketplace" repo for backend functionality. Users may also cancel

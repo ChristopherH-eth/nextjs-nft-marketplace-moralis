@@ -2,9 +2,14 @@ import { ConnectButton } from "@web3uikit/web3"
 import Link from "next/link"
 
 /**
- * @notice The Header() function creates the website header and nav bar.
+ * @file Header.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ * @brief Functional demonstration of the AVLTree class
  */
 
+/**
+ * @notice The Header() function creates the website header and nav bar.
+ */
 export default function Header() {
     // Component content
     return (

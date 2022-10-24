@@ -9,10 +9,15 @@ import { useMoralis, useWeb3Contract } from "react-moralis"
 import networkMapping from "../constants/networkMapping.json"
 
 /**
+ * @file sell-nft.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ * @brief Functional demonstration of the AVLTree class
+ */
+
+/**
  * @notice The Home() function returns the elements to be displayed on the current NFT
  * Marketplace page.
  */
-
 export default function Home() {
     const { chainId } = useMoralis()
     const chainString = chainId ? parseInt(chainId).toString() : "31337"
@@ -26,7 +31,6 @@ export default function Home() {
      * approve and list the NFT on the marketplace.
      * @param data The array of information passed from a user submission of the list NFT form.
      */
-
     async function approveAndList(data) {
         console.log("Approving...")
 
@@ -48,7 +52,6 @@ export default function Home() {
          * @notice The runContractFunction() function executes the approval function for the listing transaction,
          * and if successful, executes the listing.
          */
-
         await runContractFunction({
             params: approveOptions,
             onSuccess: () => handleApproveSuccess(nftAddress, tokenId, price),
@@ -63,7 +66,6 @@ export default function Home() {
      * @param tokenId The Token ID of the NFT being listed.
      * @param price The listing price of the NFT being listed.
      */
-
     async function handleApproveSuccess(nftAddress, tokenId, price) {
         console.log("Listing NFT...")
 
@@ -81,7 +83,6 @@ export default function Home() {
         /**
          * @notice The runContractFunction() function executes the listing function for the NFT.
          */
-
         await runContractFunction({
             params: listOptions,
             onSuccess: handleListSuccess,

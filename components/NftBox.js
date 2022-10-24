@@ -8,11 +8,16 @@ import { ethers } from "ethers"
 import UpdateListingModal from "./UpdateListingModal"
 
 /**
+ * @file NftBox.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ * @brief Functional demonstration of the AVLTree class
+ */
+
+/**
  * @notice The truncateStr() function truncates a string based on the size of the string.
  * @param fullStr The full string, unedited
  * @param strLen The length of the string we want
  */
-
 const truncateStr = (fullStr, strLen) => {
     if (fullStr.length <= strLen) return fullStr
 

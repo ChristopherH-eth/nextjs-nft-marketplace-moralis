@@ -4,10 +4,15 @@ import styles from "../styles/Home.module.css"
 import NftBox from "../components/NftBox"
 
 /**
+ * @file index.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ * @brief Functional demonstration of the AVLTree class
+ */
+
+/**
  * @notice The Home() function returns the elements to be displayed on the current NFT
  * Marketplace page.
  */
-
 export default function Home() {
     const { isWeb3Enabled } = useMoralis()
     const { data: listedNfts, isFetching: fetchingListedNfts } = useMoralisQuery(

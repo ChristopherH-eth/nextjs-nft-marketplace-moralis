@@ -5,9 +5,14 @@ import nftMarketplaceAbi from "../constants/NftMarketplace.json"
 import { ethers } from "ethers"
 
 /**
- * @notice The UpdateListingModal() function allows users to update their NFT listings.
+ * @file UpdateListingModal.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ * @brief Functional demonstration of the AVLTree class
  */
 
+/**
+ * @notice The UpdateListingModal() function allows users to update their NFT listings.
+ */
 export default function UpdateListingModal({
     nftAddress,
     tokenId,
@@ -23,7 +28,6 @@ export default function UpdateListingModal({
      * @notice The handleUpdateListingSuccess() function notifies the user when their listing has been updated.
      * @param tx The updateListing() transaction.
      */
-
     const handleUpdateListingSuccess = async (tx) => {
         await tx.wait(1)
         dispatch({
@@ -43,7 +47,6 @@ export default function UpdateListingModal({
      * @param tokenId The unique Token ID.
      * @param newPrice The updated price of the NFT.
      */
-
     const { runContractFunction: updateListing } = useWeb3Contract({
         abi: nftMarketplaceAbi,
         contractAddress: marketplaceAddress,
