@@ -10,7 +10,6 @@ import UpdateListingModal from "./UpdateListingModal"
 /**
  * @file NftBox.js
  * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
- * @brief Functional demonstration of the AVLTree class
  */
 
 /**

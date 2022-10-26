@@ -1,6 +1,10 @@
+/**
+ * @file updateActiveItems.js
+ * @author Original author Free Code Camp (Patrick Collins) used for learning purposes by 0xChristopher
+ */
+
 // This Moralis Cloud function listens for new items to be listed, and if they're not already listed, sets them as
 // ActiveItem objects before saving them to the database.
-
 Moralis.Cloud.afterSave("ItemListed", async (request) => {
     const confirmed = request.object.get("confirmed")
     const logger = Moralis.Cloud.getLogger()
@@ -49,7 +53,6 @@ Moralis.Cloud.afterSave("ItemListed", async (request) => {
 
 // This Moralis Cloud function queries the database for an ActiveItem that has been cancelled, that matches the one found
 // in the request, and if there is a match, the ActiveItem is removed from the table.
-
 Moralis.Cloud.afterSave("ItemCancelled", async (request) => {
     const confirmed = request.object.get("confirmed")
     const logger = Moralis.Cloud.getLogger()
@@ -87,7 +90,6 @@ Moralis.Cloud.afterSave("ItemCancelled", async (request) => {
 
 // This Moralis Cloud function queries the database for an ActiveItem that has been bought, that matches the one found
 // in the request, and if there is a match, the ActiveItem is removed from the table.
-
 Moralis.Cloud.afterSave("ItemBought", async (request) => {
     const confirmed = request.object.get("confirmed")
     const logger = Moralis.Cloud.getLogger()
